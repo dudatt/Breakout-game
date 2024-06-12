@@ -64,6 +64,7 @@ canvas {
     background: transparent;
     text-align: center;
     animation: colorChange 5s infinite;
+    margin-bottom: 2%;
 }
 
 .container__points {

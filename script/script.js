@@ -2,8 +2,7 @@ let canvas = document.getElementById("canvas");
 let desenho = canvas.getContext("2d");
 
 let musicaFundo = document.getElementById('musicaFundo');
-musicaFundo.volume = 0.5; // Ajusta o volume para 50%
-
+musicaFundo.volume = 0.5; 
 let setaDireita1 = false;
 let setaEsquerda1 = false;
 let setaDireita2 = false;
@@ -39,6 +38,8 @@ let tijolos2 = [];
 let pontos1 = 0;
 let pontos2 = 0;
 
+let pontos1El = document.getElementById('pontos1');
+let pontos2El = document.getElementById('pontos2');
 
 for (let c = 0; c < tijolosPorColuna; c++) {
     tijolos1[c] = [];
@@ -131,10 +132,13 @@ function colisao(bolaX, bolaY, bolaDX, bolaDY, tijolos, isLeft) {
                     bolaDY = -bolaDY;
                     t.status = 0;
 
+         
                     if (isLeft) {
                         pontos1++;
+                        pontos1El.textContent = pontos1; 
                     } else {
                         pontos2++;
+                        pontos2El.textContent = pontos2; 
                     }
                 }
             }
@@ -142,7 +146,6 @@ function colisao(bolaX, bolaY, bolaDX, bolaDY, tijolos, isLeft) {
     }
     return bolaDY;
 }
-
 
 function desenhar() {
     desenho.clearRect(0, 0, canvas.width, canvas.height);

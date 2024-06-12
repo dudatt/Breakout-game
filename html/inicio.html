@@ -4,12 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Breckkout - Tela Inicial</title>
-    <link rel="stylesheet" href="../css/inicio.css">
+    <link rel="stylesheet" href="../assets/css/inicio.css">
 </head>
 <body>
     <div class="container">
         <h1 class="title">Breakout</h1>
-        <button class="play-button" onclick="location.href='jogo.html'">Jogar</button>
+        <div class="container__botoes">
+            <button onclick="location.href='jogo.html'">
+                <span><ion-icon name="caret-forward-outline"></ion-icon></span>
+                Jogar
+            </button>
+            <button onclick="location.href='sobre.html'"> 
+                <span><ion-icon name="caret-forward-outline"></ion-icon></span>
+                Sobre
+            </button>
+            <button onclick="fecharJanela()">  
+                <span><ion-icon name="caret-forward-outline"></ion-icon></span>
+                Sair
+            </button>
+        </div>
     </div>
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script>
+        function fecharJanela() {
+            // Verificar se a janela foi aberta
+            if (minhaJanela) {
+                minhaJanela.close();
+            } else {
+                alert("A janela não foi aberta ou já foi fechada.");
+            }
+        }
+    </script>
 </body>
 </html>

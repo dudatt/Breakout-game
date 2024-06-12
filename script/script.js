@@ -1,6 +1,9 @@
 let canvas = document.getElementById("canvas");
 let desenho = canvas.getContext("2d");
 
+let musicaFundo = document.getElementById('musicaFundo');
+musicaFundo.volume = 0.5; // Ajusta o volume para 50%
+
 let setaDireita1 = false;
 let setaEsquerda1 = false;
 let setaDireita2 = false;
@@ -33,6 +36,10 @@ let tijoloOffsetLeft = (canvas.width / 2 - (tijolosPorLinha * (tijoloLargura + t
 let tijolos1 = [];
 let tijolos2 = [];
 
+let pontos1 = 0;
+let pontos2 = 0;
+
+
 for (let c = 0; c < tijolosPorColuna; c++) {
     tijolos1[c] = [];
     tijolos2[c] = [];
@@ -47,25 +54,25 @@ document.addEventListener("keyup", subirTecla);
 
 function descerTecla(tecla) {
     if (tecla.key === "Right" || tecla.key === "ArrowRight") {
-        setaDireita1 = true;
-    } else if (tecla.key === "Left" || tecla.key === "ArrowLeft") {
-        setaEsquerda1 = true;
-    } else if (tecla.key === "d" || tecla.key === "D") {
         setaDireita2 = true;
-    } else if (tecla.key === "a" || tecla.key === "A") {
+    } else if (tecla.key === "Left" || tecla.key === "ArrowLeft") {
         setaEsquerda2 = true;
+    } else if (tecla.key === "d" || tecla.key === "D") {
+        setaDireita1 = true;
+    } else if (tecla.key === "a" || tecla.key === "A") {
+        setaEsquerda1 = true;
     }
 }
 
 function subirTecla(tecla) {
     if (tecla.key === "Right" || tecla.key === "ArrowRight") {
-        setaDireita1 = false;
-    } else if (tecla.key === "Left" || tecla.key === "ArrowLeft") {
-        setaEsquerda1 = false;
-    } else if (tecla.key === "d" || tecla.key === "D") {
         setaDireita2 = false;
-    } else if (tecla.key === "a" || tecla.key === "A") {
+    } else if (tecla.key === "Left" || tecla.key === "ArrowLeft") {
         setaEsquerda2 = false;
+    } else if (tecla.key === "d" || tecla.key === "D") {
+        setaDireita1 = false;
+    } else if (tecla.key === "a" || tecla.key === "A") {
+        setaEsquerda1 = false;
     }
 }
 
@@ -115,7 +122,7 @@ function desenharDivisor() {
     desenho.closePath();
 }
 
-function colisao(bolaX, bolaY, bolaDX, bolaDY, tijolos) {
+function colisao(bolaX, bolaY, bolaDX, bolaDY, tijolos, isLeft) {
     for (let c = 0; c < tijolosPorColuna; c++) {
         for (let r = 0; r < tijolosPorLinha; r++) {
             let t = tijolos[c][r];
@@ -123,12 +130,20 @@ function colisao(bolaX, bolaY, bolaDX, bolaDY, tijolos) {
                 if (bolaX > t.x && bolaX < t.x + tijoloLargura && bolaY > t.y && bolaY < t.y + tijoloAltura) {
                     bolaDY = -bolaDY;
                     t.status = 0;
+
+                    // Incrementa a pontuação
+                    if (isLeft) {
+                        pontos1++;
+                    } else {
+                        pontos2++;
+                    }
                 }
             }
         }
     }
     return bolaDY;
 }
+
 
 function desenhar() {
     desenho.clearRect(0, 0, canvas.width, canvas.height);
@@ -144,8 +159,8 @@ function desenhar() {
 
     desenharDivisor();
 
-    bola1DY = colisao(bola1X, bola1Y, bola1DX, bola1DY, tijolos1);
-    bola2DY = colisao(bola2X, bola2Y, bola2DX, bola2DY, tijolos2);
+    bola1DY = colisao(bola1X, bola1Y, bola1DX, bola1DY, tijolos1, true);
+    bola2DY = colisao(bola2X, bola2Y, bola2DX, bola2DY, tijolos2, false);
 
     if (bola1X + bola1DX > canvas.width / 2 - bolaRadius || bola1X + bola1DX < bolaRadius) {
         bola1DX = -bola1DX;
@@ -176,15 +191,15 @@ function desenhar() {
     }
 
     if (setaDireita1 && rebatedor1X < canvas.width / 2 - rebatedorLargura) {
-        rebatedor1X += 7;
+        rebatedor1X += 9;
     } else if (setaEsquerda1 && rebatedor1X > 0) {
-        rebatedor1X -= 7;
+        rebatedor1X -= 9;
     }
 
     if (setaDireita2 && rebatedor2X < canvas.width - rebatedorLargura) {
-        rebatedor2X += 7;
+        rebatedor2X += 9;
     } else if (setaEsquerda2 && rebatedor2X > canvas.width / 2) {
-        rebatedor2X -= 7;
+        rebatedor2X -= 9;
     }
 
     bola1X += bola1DX;
@@ -194,6 +209,6 @@ function desenhar() {
     bola2Y += bola2DY;
 
     requestAnimationFrame(desenhar);
-}
 
+}
 desenhar();

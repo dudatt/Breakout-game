@@ -18,7 +18,7 @@
                 <span><ion-icon name="caret-forward-outline"></ion-icon></span>
                 Sobre
             </button>
-            <button onclick="fecharJanela()">  
+            <button onclick="location.href='sair.html'">  
                 <span><ion-icon name="caret-forward-outline"></ion-icon></span>
                 Sair
             </button>
@@ -27,15 +27,5 @@
 
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <script>
-        function fecharJanela() {
-            // Verificar se a janela foi aberta
-            if (minhaJanela) {
-                minhaJanela.close();
-            } else {
-                alert("A janela não foi aberta ou já foi fechada.");
-            }
-        }
-    </script>
 </body>
 </html>

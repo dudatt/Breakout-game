@@ -131,7 +131,6 @@ function colisao(bolaX, bolaY, bolaDX, bolaDY, tijolos, isLeft) {
                     bolaDY = -bolaDY;
                     t.status = 0;
 
-                    // Incrementa a pontuação
                     if (isLeft) {
                         pontos1++;
                     } else {

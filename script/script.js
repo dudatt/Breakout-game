@@ -172,7 +172,7 @@ function desenhar() {
         if (bola1X > rebatedor1X && bola1X < rebatedor1X + rebatedorLargura) {
             bola1DY = -bola1DY;
         } else {
-            document.location.reload();
+            document.location.stop();
         }
     }
 
@@ -186,7 +186,7 @@ function desenhar() {
         if (bola2X > rebatedor2X && bola2X < rebatedor2X + rebatedorLargura) {
             bola2DY = -bola2DY;
         } else {
-            document.location.reload();
+            document.location.stop();
         }
     }
 

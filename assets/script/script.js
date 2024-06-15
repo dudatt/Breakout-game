@@ -1,8 +1,8 @@
 let canvas = document.getElementById("canvas");
 let desenho = canvas.getContext("2d");
-
 let musicaFundo = document.getElementById('musicaFundo');
 musicaFundo.volume = 0.5; 
+
 let setaDireita1 = false;
 let setaEsquerda1 = false;
 let setaDireita2 = false;
@@ -10,20 +10,18 @@ let setaEsquerda2 = false;
 
 let rebatedorAltura = 10;
 let rebatedorLargura = 70;
-
 let rebatedor1X = (canvas.width / 2 - rebatedorLargura) / 2;
 let rebatedor2X = (canvas.width / 2 - rebatedorLargura) / 2 + canvas.width / 2;
 
 let bolaRadius = 15;
 let bola1X = canvas.width / 4;
 let bola1Y = canvas.height - rebatedorAltura - bolaRadius;
-let bola1DX = 6;
+let bola1DX = 3;
 let bola1DY = -2;
-
 let bola2X = 3 * canvas.width / 4;
 let bola2Y = canvas.height - rebatedorAltura - bolaRadius;
-let bola2DX = 4;
-let bola2DY = -4;
+let bola2DX = 3;
+let bola2DY = -2;
 
 let tijolosPorLinha = 6;
 let tijolosPorColuna = 6;
@@ -37,7 +35,6 @@ let tijolos2 = [];
 
 let pontos1 = 0;
 let pontos2 = 0;
-
 let pontos1El = document.getElementById('pontos1');
 let pontos2El = document.getElementById('pontos2');
 

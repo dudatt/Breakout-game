@@ -2,8 +2,9 @@
 <p>
   Recriação do clássico jogo Breakout. Nesta versão podendo ser jogada com um amigo, com a modalidade 1v1 e sistema de pontos.
 </p>
+
 # ⌨️ Tecnologias
-- HTML/CSS
+- HTML e CSS
 - JavaScript
 
 # 👥 Colaboradores
